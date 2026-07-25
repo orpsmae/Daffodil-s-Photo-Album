@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Section Daffodil — Memory Album</title>
+  <style>
+    :root {
+      --bg-color: #fffdf0;
+      --primary: #ffd54f;
+      --primary-dark: #f57f17;
+      --card-bg: #ffffff;
+      --text-color: #3e2723;
+      --accent: #fff59d;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      line-height: 1.6;
+    }
+
+    header {
+      background: linear-gradient(135deg, #ffe082, #ffd54f);
+      text-align: center;
+      padding: 3rem 1rem 2rem;
+      border-bottom: 4px solid var(--primary-dark);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    }
+
+    header h1 {
+      font-size: 2.8rem;
+      color: var(--primary-dark);
+      margin-bottom: 0.5rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    header p {
+      font-size: 1.1rem;
+      color: #5d4037;
+      font-weight: 500;
+    }
+
+    /* Month Navigation Bar */
+    nav {
+      position: sticky;
+      top: 0;
+      background-color: #fff8e1;
+      padding: 1rem;
+      display: flex;
+      justify-content: center;
+      gap: 0.8rem;
+      flex-wrap: wrap;
+      z-index: 100;
+      border-bottom: 2px solid #ffe082;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    }
+
+    nav a {
+      text-decoration: none;
+      color: var(--text-color);
+      background-color: #ffffff;
+      padding: 0.5rem 1.2rem;
+      border-radius: 20px;
+      font-weight: 600;
+      border: 2px solid var(--primary);
+      transition: all 0.3s ease;
+    }
+
+    nav a:hover {
+      background-color: var(--primary);
+      color: #000;
+      transform: translateY(-2px);
+    }
+
+    main {
+      max-width: 1200px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+    }
+
+    .month-section {
+      margin-bottom: 4rem;
+      scroll-margin-top: 80px;
+    }
+
+    .month-title {
+      font-size: 1.8rem;
+      color: var(--primary-dark);
+      background-color: var(--accent);
+      padding: 0.6rem 1.2rem;
+      border-left: 6px solid var(--primary-dark);
+      border-radius: 4px;
+      margin-bottom: 1.5rem;
+      display: inline-block;
+    }
+
+    /* Photo Gallery Grid */
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 1.2rem;
+    }
+
+    .photo-card {
+      background-color: var(--card-bg);
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      border: 1px solid #ffe082;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      cursor: pointer;
+    }
+
+    .photo-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+    }
+
+    .photo-card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      display: block;
+      background-color: #f5f5f5;
+    }
+
+    .photo-caption {
+      padding: 0.8rem;
+      font-size: 0.9rem;
+      color: #4e342e;
+    }
+
+    /* Lightbox Modal */
+    .lightbox {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.85);
+      z-index: 1000;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      padding: 1rem;
+    }
+
+    .lightbox img {
+      max-width: 90%;
+      max-height: 80vh;
+      border-radius: 8px;
+      border: 4px solid var(--primary);
+      box-shadow: 0 0 25px rgba(255, 213, 79, 0.3);
+    }
+
+    .lightbox-caption {
+      color: #ffffff;
+      margin-top: 1rem;
+      font-size: 1.2rem;
+      text-align: center;
+    }
+
+    .lightbox-close {
+      position: absolute;
+      top: 20px;
+      right: 30px;
+      color: #ffffff;
+      font-size: 2.5rem;
+      font-weight: bold;
+      cursor: pointer;
+      transition: color 0.2s ease;
+    }
+
+    .lightbox-close:hover {
+      color: var(--primary);
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem;
+      background-color: #fff8e1;
+      border-top: 2px solid #ffe082;
+      color: #6d4c41;
+      font-weight: 500;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>🌼 Section Daffodil 🌼</h1>
+    <p>Our Class Memory Album & Timeline</p>
+  </header>
+
+  <!-- Navigation Bar -->
+  <nav>
+    <a href="#january">January</a>
+    <a href="#february">February</a>
+    <a href="#march">March</a>
+    <a href="#april">April</a>
+    <a href="#may">May</a>
+    <a href="#june">June</a>
+  </nav>
+
+  <main>
+    
+    <!-- JANUARY (25 PHOTOS) -->
+    <section id="january" class="month-section">
+      <h2 class="month-title">January Memories</h2>
+      <div class="gallery">
+        <!-- 1 to 25 -->
+        <div class="photo-card" onclick="openLightbox(this)"><img src="IMG_7613.jpeg" alt="January Photo 1"><div class="photo-caption">January Photo 1</div></div>
+        <div class="photo-card" onclick="openLightbox(this)"><img src="IMG_7633.jpeg" alt="January Photo 2"><div class="photo-caption">January Photo 2</div></div>
+        <div class="photo-card" onclick="openLightbox(this)"><img src="IMG_7634.jpeg" alt="January Photo 3"><div class="photo-caption">January Photo 3</div></div>
+        <div class="photo-card" onclick="openLightbox(this)"><img src="IMG_7642.jpeg" alt="January Photo 4"><div class="photo-caption">January Photo 4</div></div>
+        <div class="photo-card" onclick="openLightbox(this)"><img src="IMG_7643.jpeg" alt="January Photo 5"><div class="photo-caption">January Photo 5</div></div>
+        <div class="photo-card" onclick="openLightbox(this)"><img src="IMG_7644.jpeg" alt="January Photo 6"><div class="photo-caption">January Photo 6</div></div>
+        <div class="photo-card" onclick="openLightbox(this)"><img src="IMG_7652.jpeg" alt="January Photo 7"><div class="photo-caption">January Photo 7</div></div>
+        <div class="photo-card" onclick="openLightbox(this)"><img src="IMG_7645.jpeg" alt="January Photo 8"><div class="photo-caption">January Photo 8</div></div>
+        <div class="photo-card" onclick="openLightbox(this)"><img src="IMG_7653.jpeg" alt="January Photo 9"><div class="photo-caption">January Photo 9</div></div>
+        <div class="photo-card" onclick="openLightbox(this)"><img src="IMG_7654.jpeg" alt="January Photo 10"><div class="photo-caption">January Photo 10</div></div>
+        <div class="photo-card" onclick="openLightbox(this)"><img src="YOUR PHOTO HERE" alt="January Photo 11"><div class="photo-caption">January Photo 11</div></div>
+        <div class="photo-card" onclick="openLightbox(this)"><img src="YOUR PHOTO HERE" alt="January Photo 12"><div class="photo-caption">January Photo 12</div></div>
+        <div class="photo-card" onclick="openLightbox(this)"><img src="YOUR PHOTO HERE" alt="January Photo 13"><div class="photo-caption">January Photo 13</div></div>
+        <div class="photo-card" onclick="openLightbox(this)"><img src="YOUR PHOTO HERE" alt="January Photo 14"><div class="photo-caption">January Photo 14</div></div>
+        <div class="photo-card" onclick="openLightbox(this)"><img src="YOUR PHOTO HERE" alt="January Photo 15"><div class="photo-caption">January Photo 15</div></div>
+        <div class="photo-card" onclick="openLightbox(this)"><img src="YOUR PHOTO HERE" alt="January Photo 16"><div class="photo-caption">January Photo 16</div></div>
+        <div class="photo-card" onclick="openLightbox(this)"><img src="YOUR PHOTO HERE" alt="January Photo 17"><div class="photo-caption">January Photo 17</div></div>
+        <div class="photo-card" onclick="openLightbox(this)"><img src="YOUR PHOTO HERE" alt="January Photo 18"><div class="photo-caption">January Photo 18</div></div>
+        <div class="photo-card" onclick="openLightbox(this)"><img src="YOUR PHOTO HERE" alt="January Photo 19"><div class="photo-caption">January Photo 19</div></div>
+        <div class="photo-card" onclick="openLightbox(this)"><img src="YOUR PHOTO HERE" alt="January Photo 20"><div class="photo-caption">January Photo 20</div></div>
+        <div class="photo-card" onclick="openLightbox(this)"><img src="YOUR PHOTO HERE" alt="January Photo 21"><div class="photo-caption">January Photo 21</div></div>
+        <div class="photo-card" onclick="openLightbox(this)"><img src="YOUR PHOTO HERE" alt="January Photo 22"><div class="photo-caption">January Photo 22</div></div>
+        <div class="photo-card" onclick="openLightbox(this)"><img src="YOUR PHOTO HERE" alt="January Photo 23"><div class="photo-caption">January Photo 23</div></div>
+        <div class="photo-card" onclick="openLightbox(this)"><img src="YOUR PHOTO HERE" alt="January Photo 24"><div class="photo-caption">January Photo 24</div></div>
+        <div class="photo-card" onclick="openLightbox(this)"><img src="YOUR PHOTO HERE" alt="January Photo 25"><div class="photo-caption">January Photo 25</div></div>
+      </div>
+    </section>
+
+    <!-- FEBRUARY (25 PHOTOS) -->
+    <section id="february" class="month-section">
+      <h2 class="month-title">February Memories</h2>
+      <div class="gallery">
+        <div class="photo-card" onclick="openLightbox(this)"><img src="YOUR PHOTO HERE" alt="February Photo 1"><div class="photo-caption">February Photo 1</div></div>
+        <div class="photo-card" onclick="openLightbox(this)"><img src="YOUR PHOTO HERE" alt="February Photo 2"><div class="photo-caption">February Photo 2</div></div>
+        <div class="photo-card" onclick="openLightbox(this)"><img src="YOUR PHOTO HERE" alt="February Photo 3"><div class="photo-caption">February Photo 3</div></div>
+        <div class="photo-card" onclick="openLightbox(this)"><img src="YOUR PHOTO HERE" alt="February Photo 4"><div class="photo-caption">February Photo 4</div></div>
+        <div class="photo-card" onclick="openLightbox(this)"><img src="YOUR PHOTO HERE" alt="February Photo 5"><div class="photo-caption">February Photo 5</div></div>
+        <div class="photo-card" onclick="openLightbox(this)"><img src="YOUR PHOTO HERE" alt="February Photo 6"><div class="photo-caption">February Photo 6</div></div>
+        <div class="photo-card" onclick="openLightbox(this)"><img src="YOUR PHOTO HERE" alt="February Photo 7"><div class="photo-caption">February Photo 7</div></div>
+        <div class="photo-card" onclick="openLightbox(this)"><img src="YOUR PHOTO HERE" alt="February Photo 8"><div class="photo-caption">February Photo 8</div></div>
+        <div class="photo-card" onclick="openLightbox(this)"><img src="YOUR PHOTO HERE" alt="February Photo 9"><div class="photo-caption">February Photo 9</div></div>
+        <div class="photo-card" onclick="openLightbox(this)"><img src="YOUR PHOTO HERE" alt="February Photo 10"><div class="photo-caption">February Photo 10</div></div>
+        <div class="photo-card" onclick="openLightbox(this)"><img src="YOUR PHOTO HERE" alt="February Photo 11"><div class="photo-caption">February Photo 11</div></div>
+        <div class="photo-card" onclick="openLightbox(this)"><img src="YOUR PHOTO HERE" alt="February Photo 12"><div class="photo-caption">February Photo 12</div></div>
+        <div class="photo-card" onclick="openLightbox(this)"><img src="YOUR PHOTO HERE" alt="February Photo 13"><div class="photo-caption">February Photo 13</div></div>
+        <div class="photo-card" onclick="openLightbox(this)"><img src="YOUR PHOTO HERE" alt="February Photo 14"><div class="photo-caption">February Photo 14</div></div>
+        <div class="photo-card" onclick="openLightbox(this)"><img src="YOUR PHOTO HERE" alt="February Photo 15"><div class="photo-caption">February Photo 15</div></div>
+        <div class="photo-card" onclick="openLightbox(this)"><img src="YOUR PHOTO HERE" alt="February Photo 16"><div class="photo-caption">February Photo 16</div></div>
+        <div class="photo-card" onclick="openLightbox(this)"><img src="YOUR PHOTO HERE" alt="February Photo 17"><div class="photo-caption">February Photo 17</div></div>
+        <div class="photo-card" onclick="openLightbox(this)"><img src="YOUR PHOTO HERE" alt="February Photo 18"><div class="photo-caption">February Photo 18</div></div>
+        <div class="photo-card" onclick="openLightbox(this)"><img src="YOUR PHOTO HERE" alt="February Photo 19"><div class="photo-caption">February Photo 19</div></div>
+        <div class="photo-card" onclick="openLightbox(this)"><img src="YOUR PHOTO HERE" alt="February Photo 20"><div class="photo-caption">February Photo 20</div></div>
+        <div class="photo-card" onclick="openLightbox(this)"><img src="YOUR PHOTO HERE" alt="February Photo 21"><div class="photo-caption">February Photo 21</div></div>
+        <div class="photo-card" onclick="openLightbox(this)"><img src="YOUR PHOTO HERE" alt="February Photo 22"><div class="photo-caption">February Photo 22</div></div>
+        <div class="photo-card" onclick="openLightbox(this)"><img src="YOUR PHOTO HERE" alt="February Photo 23"><div class="photo-caption">February Photo 23</div></div>
+        <div class="photo-card" onclick="openLightbox(this)"><img src="YOUR PHOTO HERE" alt="February Photo 24"><div class="photo-caption">February Photo 24</div></div>
+        <div class="photo-card" onclick="openLightbox(this)"><img src="YOUR PHOTO HERE" alt="February Photo 25"><div class="photo-caption">February Photo 25</div></div>
+      </div>
+    </section>
+
+    <!-- MARCH (25 PHOTOS) -->
+    <section id="march" class="month-section">
+      <h2 class="month-title">March Memories</h2>
+      <div class="gallery">
+        <div class="photo-card" onclick="openLightbox(this)"><img src="YOUR PHOTO HERE" alt="March Photo 1"><div class="photo-caption">March Photo 1</div></div>
+        <div class="photo-card" onclick="openLightbox(this)"><img src="YOUR PHOTO HERE" alt="March Photo 2"><div class="photo-caption">March Photo 2</div></div>
+        <div class="photo-card" onclick="openLightbox(this)"><img src="YOUR PHOTO HERE" alt="March Photo 3"><div class="photo-caption">March Photo 3</div></div>
+        <div class="photo-card" onclick="openLightbox(this)"><img src="YOUR PHOTO HERE" alt="March Photo 4"><div class="photo-caption">March Photo 4</div></div>
+        <div class="photo-card" onclick="openLightbox(this)"><img src="YOUR PHOTO HERE" alt="March Photo 5"><div class="photo-caption">March Photo 5</div></div>
+        <div class="photo-card" onclick="openLightbox(this)"><img src="YOUR PHOTO HERE" alt="March Photo 6"><div class="photo-caption">March Photo 6</div></div>
+        <div class="photo-card" onclick="openLightbox(this)"><img src="YOUR PHOTO HERE" alt="March Photo 7"><div class="photo-caption">March Photo 7</div></div>
+        <div class="photo-card" onclick="openLightbox(this)"><img src="YOUR PHOTO HERE" alt="March Photo 8"><div class="photo-caption">March Photo 8</div></div>
+        <div class="photo-card" onclick="openLightbox(this)"><img src="YOUR PHOTO HERE" alt="March Photo 9"><div class="photo-caption">March Photo 9</div></div>
+        <div class="photo-card" onclick="openLightbox(this)"><img src="YOUR PHOTO HERE" alt="March Photo 10"><div class="photo-caption">March Photo 10</div></div>
+        <div class="photo-card" onclick="openLightbox(this)"><img src="YOUR PHOTO HERE" alt="March Photo 11"><div class="photo-caption">March Photo 11</div></div>
+        <div class="photo-card" onclick="openLightbox(this)"><img src="YOUR PHOTO HERE" alt="March Photo 12"><div class="photo-caption">March Photo 12</div></div>
+        <div class="photo-card" onclick="openLightbox(this)"><img src="YOUR PHOTO HERE" alt="March Photo 13"><div class="photo-caption">March Photo 13</div></div>
+        <div class="photo-card" onclick="openLightbox(this)"><img src="YOUR PHOTO HERE" alt="March Photo 14"><div class="photo-caption">March Photo 14</div></div>
+        <div class="photo-card" onclick="openLightbox(this)"><img src="YOUR PHOTO HERE" alt="March Photo 15"><div class="photo-caption">March Photo 15</div></div>
+        <div class="photo-card" onclick="openLightbox(this)"><img src="YOUR PHOTO HERE" alt="March Photo 16"><div class="photo-caption">March Photo 16</div></div>
+        <div class="photo-card" onclick="openLightbox(this)"><img src="YOUR PHOTO HERE" alt="March Photo 17"><div class="photo-caption">March Photo 17</div></div>
+        <div class="photo-card" onclick="openLightbox(this)"><img src="YOUR PHOTO HERE" alt="March Photo 18"><div class="photo-caption">March Photo 18</div></div>
+        <div class="photo-card" onclick="openLightbox(this)"><img src="YOUR PHOTO HERE" alt="March Photo 19"><div class="photo-caption">March Photo 19</div></div>
+        <div class="photo-card" onclick="openLightbox(this)"><img src="YOUR PHOTO HERE" alt="March Photo 20"><div class="photo-caption">March Photo 20</div></div>
+        <div class="photo-card" onclick="openLightbox(this)"><img src="YOUR PHOTO HERE" alt="March Photo 21"><div class="photo-caption">March Photo 21</div></div>
+        <div class="photo-card" onclick="openLightbox(this)"><img src="YOUR PHOTO HERE" alt="March Photo 22"><div class="photo-caption">March Photo 22</div></div>
+        <div class="photo-card" onclick="openLightbox(this)"><img src="YOUR PHOTO HERE" alt="March Photo 23"><div class="photo-caption">March Photo 23</div></div>
+        <div class="photo-card" onclick="openLightbox(this)"><img src="YOUR PHOTO HERE" alt="March Photo 24"><div class="photo-caption">March Photo 24</div></div>
+        <div class="photo-card" onclick="openLightbox(this)"><img src="YOUR PHOTO HERE" alt="March Photo 25"><div class="photo-caption">March Photo 25</div></div>
+      </div>
+    </section>
+
+    <!-- APRIL (25 PHOTOS) -->
+    <section id="april" class="month-section">
+      <h2 class="month-title">April Memories</h2>
+      <div class="gallery">
+        <div class="photo-card" onclick="openLightbox(this)"><img src="YOUR PHOTO HERE" alt="April Photo 1"><div class="photo-caption">April Photo 1</div></div>
+        <div class="photo-card" onclick="openLightbox(this)"><img src="YOUR PHOTO HERE" alt="April Photo 2"><div class="photo-caption">April Photo 2</div></div>
+        <div class="photo-card" onclick="openLightbox(this)"><img src="YOUR PHOTO HERE" alt="April Photo 3"><div class="photo-caption">April Photo 3</div></div>
+        <div class="photo-card" onclick="openLightbox(this)"><img src="YOUR PHOTO HERE" alt="April Photo 4"><div class="photo-caption">April Photo 4</div></div>
+        <div class="photo-card" onclick="openLightbox(this)"><img src="YOUR PHOTO HERE" alt="April Photo 5"><div class="photo-caption">April Photo 5</div></div>
+        <div class="photo-card" onclick="openLightbox(this)"><img src="YOUR PHOTO HERE" alt="April Photo 6"><div class="photo-caption">April Photo 6</div></div>
+        <div class="photo-card" onclick="openLightbox(this)"><img src="YOUR PHOTO HERE" alt="April Photo 7"><div class="photo-caption">April Photo 7</div></div>
+        <div class="photo-card" onclick="openLightbox(this)"><img src="YOUR PHOTO HERE" alt="April Photo 8"><div class="photo-caption">April Photo 8</div></div>
+        <div class="photo-card" onclick="openLightbox(this)"><img src="YOUR PHOTO HERE" alt="April Photo 9"><div class="photo-caption">April Photo 9</div></div>
+        <div class="photo-card" onclick="openLightbox(this)"><img src="YOUR PHOTO HERE" alt="April Photo 10"><div class="photo-caption">April Photo 10</div></div>
+        <div class="photo-card" onclick="openLightbox(this)"><img src="YOUR PHOTO HERE" alt="April Photo 11"><div class="photo-caption">April Photo 11</div></div>
+        <div class="photo-card" onclick="openLightbox(this)"><img src="YOUR PHOTO HERE" alt="April Photo 12"><div class="photo-caption">April Photo 12</div></div>
+        <div class="photo-card" onclick="openLightbox(this)"><img src="YOUR PHOTO HERE" alt="April Photo 13"><div class="photo-caption">April Photo 13</div></div>
+        <div class="photo-card" onclick="openLightbox(this)"><img src="YOUR PHOTO HERE" alt="April Photo 14"><div class="photo-caption">April Photo 14</div></div>
+        <div class="photo-card" onclick="openLightbox(this)"><img src="YOUR PHOTO HERE" alt="April Photo 15"><div class="photo-caption">April Photo 15</div></div>
+        <div class="photo-card" onclick="openLightbox(this)"><img src="YOUR PHOTO HERE" alt="April Photo 16"><div class="photo-caption">April Photo 16</div></div>
+        <div class="photo-card" onclick="openLightbox(this)"><img src="YOUR PHOTO HERE" alt="April Photo 17"><div class="photo-caption">April Photo 17</div></div>
+        <div class="photo-card" onclick="openLightbox(this)"><img src="YOUR PHOTO HERE" alt="April Photo 18"><div class="photo-caption">April Photo 18</div></div>
+        <div class="photo-card" onclick="openLightbox(this)"><img src="YOUR PHOTO HERE" alt="April Photo 19"><div class="photo-caption">April Photo 19</div></div>
+        <div class="photo-card" onclick="openLightbox(this)"><img src="YOUR PHOTO HERE" alt="April Photo 20"><div class="photo-caption">April Photo 20</div></div>
+        <div class="photo-card" onclick="openLightbox(this)"><img src="YOUR PHOTO HERE" alt="April Photo 21"><div class="photo-caption">April Photo 21</div></div>
+        <div class="photo-card" onclick="openLightbox(this)"><img src="YOUR PHOTO HERE" alt="April Photo 22"><div class="photo-caption">April Photo 22</div></div>
+        <div class="photo-card" onclick="openLightbox(this)"><img src="YOUR PHOTO HERE" alt="April Photo 23"><div class="photo-caption">April Photo 23</div></div>
+        <div class="photo-card" onclick="openLightbox(this)"><img src="YOUR PHOTO HERE" alt="April Photo 24"><div class="photo-caption">April Photo 24</div></div>
+        <div class="photo-card" onclick="openLightbox(this)"><img src="YOUR PHOTO HERE" alt="April Photo 25"><div class="photo-caption">April Photo 25</div></div>
+      </div>
+    </section>
+
+    <!-- MAY (25 PHOTOS) -->
+    <section id="may" class="month-section">
+      <h2 class="month-title">May Memories</h2>
+      <div class="gallery">
+        <div class="photo-card" onclick="openLightbox(this)"><img src="YOUR PHOTO HERE" alt="May Photo 1"><div class="photo-caption">May Photo 1</div></div>
+        <div class="photo-card" onclick="openLightbox(this)"><img src="YOUR PHOTO HERE" alt="May Photo 2"><div class="photo-caption">May Photo 2</div></div>
+        <div class="photo-card" onclick="openLightbox(this)"><img src="YOUR PHOTO HERE" alt="May Photo 3"><div class="photo-caption">May Photo 3</div></div>
+        <div class="photo-card" onclick="openLightbox(this)"><img src="YOUR PHOTO HERE" alt="May Photo 4"><div class="photo-caption">May Photo 4</div></div>
+        <div class="photo-card" onclick="openLightbox(this)"><img src="YOUR PHOTO HERE" alt="May Photo 5"><div class="photo-caption">May Photo 5</div></div>
+        <div class="photo-card" onclick="openLightbox(this)"><img src="YOUR PHOTO HERE" alt="May Photo 6"><div class="photo-caption">May Photo 6</div></div>
+        <div class="photo-card" onclick="openLightbox(this)"><img src="YOUR PHOTO HERE" alt="May Photo 7"><div class="photo-caption">May Photo 7</div></div>
+        <div class="photo-card" onclick="openLightbox(this)"><img src="YOUR PHOTO HERE" alt="May Photo 8"><div class="photo-caption">May Photo 8</div></div>
+        <div class="photo-card" onclick="openLightbox(this)"><img src="YOUR PHOTO HERE" alt="May Photo 9"><div class="photo-caption">May Photo 9</div></div>
+        <div class="photo-card" onclick="openLightbox(this)"><img src="YOUR PHOTO HERE" alt="May Photo 10"><div class="photo-caption">May Photo 10</div></div>
+        <div class="photo-card" onclick="openLightbox(this)"><img src="YOUR PHOTO HERE" alt="May Photo 11"><div class="photo-caption">May Photo 11</div></div>
+        <div class="photo-card" onclick="openLightbox(this)"><img src="YOUR PHOTO HERE" alt="May Photo 12"><div class="photo-caption">May Photo 12</div></div>
+        <div class="photo-card" onclick="openLightbox(this)"><img src="YOUR PHOTO HERE" alt="May Photo 13"><div class="photo-caption">May Photo 13</div></div>
+        <div class="photo-card" onclick="openLightbox(this)"><img src="YOUR PHOTO HERE" alt="May Photo 14"><div class="photo-caption">May Photo 14</div></div>
+        <div class="photo-card" onclick="openLightbox(this)"><img src="YOUR PHOTO HERE" alt="May Photo 15"><div class="photo-caption">May Photo 15</div></div>
+        <div class="photo-card" onclick="openLightbox(this)"><img src="YOUR PHOTO HERE" alt="May Photo 16"><div class="photo-caption">May Photo 16</div></div>
+        <div class="photo-card" onclick="openLightbox(this)"><img src="YOUR PHOTO HERE" alt="May Photo 17"><div class="photo-caption">May Photo 17</div></div>
+        <div class="photo-card" onclick="openLightbox(this)"><img src="YOUR PHOTO HERE" alt="May Photo 18"><div class="photo-caption">May Photo 18</div></div>
+        <div class="photo-card" onclick="openLightbox(this)"><img src="YOUR PHOTO HERE" alt="May Photo 19"><div class="photo-caption">May Photo 19</div></div>
+        <div class="photo-card" onclick="openLightbox(this)"><img src="YOUR PHOTO HERE" alt="May Photo 20"><div class="photo-caption">May Photo 20</div></div>
+        <div class="photo-card" onclick="openLightbox(this)"><img src="YOUR PHOTO HERE" alt="May Photo 21"><div class="photo-caption">May Photo 21</div></div>
+        <div class="photo-card" onclick="openLightbox(this)"><img src="YOUR PHOTO HERE" alt="May Photo 22"><div class="photo-caption">May Photo 22</div></div>
+        <div class="photo-card" onclick="openLightbox(this)"><img src="YOUR PHOTO HERE" alt="May Photo 23"><div class="photo-caption">May Photo 23</div></div>
+        <div class="photo-card" onclick="openLightbox(this)"><img src="YOUR PHOTO HERE" alt="May Photo 24"><div class="photo-caption">May Photo 24</div></div>
+        <div class="photo-card" onclick="openLightbox(this)"><img src="YOUR PHOTO HERE" alt="May Photo 25"><div class="photo-caption">May Photo 25</div></div>
+      </div>
+    </section>
+
+    <!-- JUNE (25 PHOTOS) -->
+    <section id="june" class="month-section">
+      <h2 class="month-title">June Memories</h2>
+      <div class="gallery">
+        <div class="photo-card" onclick="openLightbox(this)"><img src="YOUR PHOTO HERE" alt="June Photo 1"><div class="photo-caption">June Photo 1</div></div>
+        <div class="photo-card" onclick="openLightbox(this)"><img src="YOUR PHOTO HERE" alt="June Photo 2"><div class="photo-caption">June Photo 2</div></div>
+        <div class="photo-card" onclick="openLightbox(this)"><img src="YOUR PHOTO HERE" alt="June Photo 3"><div class="photo-caption">June Photo 3</div></div>
+        <div class="photo-card" onclick="openLightbox(this)"><img src="YOUR PHOTO HERE" alt="June Photo 4"><div class="photo-caption">June Photo 4</div></div>
+        <div class="photo-card" onclick="openLightbox(this)"><img src="YOUR PHOTO HERE" alt="June Photo 5"><div class="photo-caption">June Photo 5</div></div>
+        <div class="photo-card" onclick="openLightbox(this)"><img src="YOUR PHOTO HERE" alt="June Photo 6"><div class="photo-caption">June Photo 6</div></div>
+        <div class="photo-card" onclick="openLightbox(this)"><img src="YOUR PHOTO HERE" alt="June Photo 7"><div class="photo-caption">June Photo 7</div></div>
+        <div class="photo-card" onclick="openLightbox(this)"><img src="YOUR PHOTO HERE" alt="June Photo 8"><div class="photo-caption">June Photo 8</div></div>
+        <div class="photo-card" onclick="openLightbox(this)"><img src="YOUR PHOTO HERE" alt="June Photo 9"><div class="photo-caption">June Photo 9</div></div>
+        <div class="photo-card" onclick="openLightbox(this)"><img src="YOUR PHOTO HERE" alt="June Photo 10"><div class="photo-caption">June Photo 10</div></div>
+        <div class="photo-card" onclick="openLightbox(this)"><img src="YOUR PHOTO HERE" alt="June Photo 11"><div class="photo-caption">June Photo 11</div></div>
+        <div class="photo-card" onclick="openLightbox(this)"><img src="YOUR PHOTO HERE" alt="June Photo 12"><div class="photo-caption">June Photo 12</div></div>
+        <div class="photo-card" onclick="openLightbox(this)"><img src="YOUR PHOTO HERE" alt="June Photo 13"><div class="photo-caption">June Photo 13</div></div>
+        <div class="photo-card" onclick="openLightbox(this)"><img src="YOUR PHOTO HERE" alt="June Photo 14"><div class="photo-caption">June Photo 14</div></div>
+        <div class="photo-card" onclick="openLightbox(this)"><img src="YOUR PHOTO HERE" alt="June Photo 15"><div class="photo-caption">June Photo 15</div></div>
+        <div class="photo-card" onclick="openLightbox(this)"><img src="YOUR PHOTO HERE" alt="June Photo 16"><div class="photo-caption">June Photo 16</div></div>
+        <div class="photo-card" onclick="openLightbox(this)"><img src="YOUR PHOTO HERE" alt="June Photo 17"><div class="photo-caption">June Photo 17</div></div>
+        <div class="photo-card" onclick="openLightbox(this)"><img src="YOUR PHOTO HERE" alt="June Photo 18"><div class="photo-caption">June Photo 18</div></div>
+        <div class="photo-card" onclick="openLightbox(this)"><img src="YOUR PHOTO HERE" alt="June Photo 19"><div class="photo-caption">June Photo 19</div></div>
+        <div class="photo-card" onclick="openLightbox(this)"><img src="YOUR PHOTO HERE" alt="June Photo 20"><div class="photo-caption">June Photo 20</div></div>
+        <div class="photo-card" onclick="openLightbox(this)"><img src="YOUR PHOTO HERE" alt="June Photo 21"><div class="photo-caption">June Photo 21</div></div>
+        <div class="photo-card" onclick="openLightbox(this)"><img src="YOUR PHOTO HERE" alt="June Photo 22"><div class="photo-caption">June Photo 22</div></div>
+        <div class="photo-card" onclick="openLightbox(this)"><img src="YOUR PHOTO HERE" alt="June Photo 23"><div class="photo-caption">June Photo 23</div></div>
+        <div class="photo-card" onclick="openLightbox(this)"><img src="YOUR PHOTO HERE" alt="June Photo 24"><div class="photo-caption">June Photo 24</div></div>
+        <div class="photo-card" onclick="openLightbox(this)"><img src="YOUR PHOTO HERE" alt="June Photo 25"><div class="photo-caption">June Photo 25</div></div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Interactive Pop-up Viewer (Lightbox) -->
+  <div id="lightboxModal" class="lightbox" onclick="closeLightbox()">
+    <span class="lightbox-close">&times;</span>
+    <img id="lightboxImg" src="" alt="Full view">
+    <div id="lightboxCaption" class="lightbox-caption"></div>
+  </div>
+
+  <footer>
+    <p>Created with 💛 for Section Daffodil</p>
+  </footer>
+
+  <script>
+    function openLightbox(card) {
+      const img = card.querySelector('img');
+      const caption = card.querySelector('.photo-caption');
+      
+      const lightbox = document.getElementById('lightboxModal');
+      const lightboxImg = document.getElementById('lightboxImg');
+      const lightboxCaption = document.getElementById('lightboxCaption');
+
+      lightboxImg.src = img.src;
+      lightboxCaption.textContent = caption.textContent;
+      lightbox.style.display = 'flex';
+    }
+
+    function closeLightbox() {
+      document.getElementById('lightboxModal').style.display = 'none';
+    }
+  </script>
+
+</body>
+</html>
